@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap");
+
+@import "tailwindcss";
+
+@layer base {
+  .rammetto-one-regular {
+    font-family: "Rammetto One", serif;
+    font-style: normal;
+  }
+}
