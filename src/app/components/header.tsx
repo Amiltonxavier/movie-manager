@@ -1,24 +1,34 @@
 import { Clapperboard, LogOut, Popcorn } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const tabsApp = [
     {
         name: 'Explorar',
-        id: 'explore'
+        id: 'explore',
+        url: ''
     },
     {
         name: 'Meus filmes',
-        id: 'my-movies'
+        id: 'my-movies',
+        url: '/my-movies'
     }
 ]
 
 export function Header() {
     const [tab, setTab] = useState(tabsApp[0].id);
-    function handleActiveTab(id: string) {
-        setTab(id)
+    function handleActiveTab(id: string, url: string) {
+        setTab(id);
+        goTo(url)
+    }
+
+    const router = useNavigate();
+
+    function goTo (url: string){
+        router(url)
     }
     return (
-        <div className="flex justify-between items-center border-b py-5 px-6">
+        <div className="flex justify-between items-center border-b border-[#131320] py-5 px-6">
             <button>
                 <img src="/Logo.svg" alt="logo" className="object-cover h-12 w-12" />
             </button>
@@ -29,7 +39,7 @@ export function Header() {
                     tabsApp.map((item) => (
                         <button type="button" key={item.id}
                             className={`flex items-center gap-2 cursor-pointer py-2 px-3 rounded-lg ${tab === item.id ? 'text-[#892CCD] bg-[#1A1B2D]' : 'text-[#7A7B9F]'} `}
-                            onClick={() => handleActiveTab(item.id)}
+                            onClick={() => handleActiveTab(item.id, item.url)}
                         >
                             {
                                 item.id === 'explore' ? <Popcorn /> : <Clapperboard />

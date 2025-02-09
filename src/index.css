@@ -1,10 +1,42 @@
 @import url("https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
 @import "tailwindcss";
 
 @layer base {
   .rammetto-one-regular {
     font-family: "Rammetto One", serif;
     font-style: normal;
+  }
+
+  .rajdhani-regular {
+    font-family: "Rajdhani", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .rajdhani-medium {
+    font-family: "Rajdhani", serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .rajdhani-semibold {
+    font-family: "Rajdhani", serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .rajdhani-bold {
+    font-family: "Rajdhani", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .nunito-sans {
+    font-family: "Nunito Sans", serif;
+    font-weight: 400;
   }
 }
