@@ -1,45 +1,23 @@
 import { Clapperboard, LogOut, Popcorn } from "lucide-react";
-import { useState } from "react";
-import { useNavigate } from "react-router";
-
-const tabsApp = [
-    {
-        name: 'Explorar',
-        id: 'explore',
-        url: ''
-    },
-    {
-        name: 'Meus filmes',
-        id: 'my-movies',
-        url: '/my-movies'
-    }
-]
+import { useTabs } from "../context/tabs-context";
+import ProfileImg from "../../assets/Image.png"
 
 export function Header() {
-    const [tab, setTab] = useState(tabsApp[0].id);
-    function handleActiveTab(id: string, url: string) {
-        setTab(id);
-        goTo(url)
-    }
+    const { activeTabs, handleTabs, tabsValue } = useTabs();
 
-    const router = useNavigate();
-
-    function goTo (url: string){
-        router(url)
-    }
     return (
         <div className="flex justify-between items-center border-b border-[#131320] py-5 px-6">
-            <button>
+            <button type="button">
                 <img src="/Logo.svg" alt="logo" className="object-cover h-12 w-12" />
             </button>
 
             <div className="flex items-center gap-6">
 
                 {
-                    tabsApp.map((item) => (
+                    tabsValue.map((item) => (
                         <button type="button" key={item.id}
-                            className={`flex items-center gap-2 cursor-pointer py-2 px-3 rounded-lg ${tab === item.id ? 'text-[#892CCD] bg-[#1A1B2D]' : 'text-[#7A7B9F]'} `}
-                            onClick={() => handleActiveTab(item.id, item.url)}
+                            className={`flex items-center gap-2 cursor-pointer py-2 px-3 rounded-lg ${activeTabs === item.id ? 'text-[#892CCD] bg-[#1A1B2D]' : 'text-[#7A7B9F]'} `}
+                            onClick={() => handleTabs(item.id)}
                         >
                             {
                                 item.id === 'explore' ? <Popcorn /> : <Clapperboard />
@@ -52,7 +30,14 @@ export function Header() {
             </div>
 
             <div className="flex items-center gap-2">
-                <span>Olá, Jordan</span>
+                <span className="text-[#B5B6C9] text-sm nunito-sans">Olá, Jordan</span>
+                <div className="h-8 w-8 shrink-0">
+                    <img
+                        src={ProfileImg}
+                        alt="profile picture"
+                        className="object-cover rounded-sm border-2 border-[#892CCD]"
+                    />
+                </div>
                 <div className="h-full w-1 bg-gray-300" />
 
                 <button type="button" className="bg-[#1A1B2D] p-1.5 rounded-lg ">
