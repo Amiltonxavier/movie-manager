@@ -39,4 +39,8 @@
     font-family: "Nunito Sans", serif;
     font-weight: 400;
   }
+  .nunito-sans-bold {
+    font-family: "Nunito Sans", serif;
+    font-weight: 700;
+  }
 }

@@ -1,5 +1,5 @@
 import { createContext, type ReactNode, useContext, useState } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 interface TabsProviderProps {
     children: ReactNode;
@@ -11,7 +11,7 @@ interface Tab {
 }
 
 interface TabsContextProps {
-    activeTabs: string;
+    activeTabs: string | null;
     tabsValue: Tab[];
     handleTabs: (newTab: string) => void;
 }
@@ -36,9 +36,13 @@ export const tabsValue = [
 
 
 export function TabsProvider({ children }: TabsProviderProps) {
-    const [activeTabs, setActiveTabs] = useState<string>(tabsValue[0].id);
+    const [activeTabs, setActiveTabs] = useState<string | null >(tabsValue[0].id);
+    const location = useLocation()
+    console.log(location.pathname)
     const navigate = useNavigate();
     function handleTabs(newTab: string) {
+        if(location.pathname !== '/app') return setActiveTabs(null)
+        
         navigate(tabsValue.find(item => item.id === newTab)?.url || '');
 
         setActiveTabs(newTab);

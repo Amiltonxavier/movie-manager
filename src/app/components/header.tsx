@@ -1,15 +1,17 @@
 import { Clapperboard, LogOut, Popcorn } from "lucide-react";
 import { useTabs } from "../context/tabs-context";
 import ProfileImg from "../../assets/Image.png"
+import { Link } from "react-router";
+import { CONSTANT } from "../../CONSTANTS/constants";
 
 export function Header() {
     const { activeTabs, handleTabs, tabsValue } = useTabs();
 
     return (
-        <div className="flex justify-between items-center border-b border-[#131320] py-5 px-6">
-            <button type="button">
+        <nav className="flex justify-between items-center border-b border-[#131320] py-5 px-6">
+            <Link to={`/${CONSTANT.ROUTES.BASE}`}>
                 <img src="/Logo.svg" alt="logo" className="object-cover h-12 w-12" />
-            </button>
+            </Link>
 
             <div className="flex items-center gap-6">
 
@@ -44,6 +46,6 @@ export function Header() {
                     <LogOut className="size-5" />
                 </button>
             </div>
-        </div>
+        </nav>
     )
 }

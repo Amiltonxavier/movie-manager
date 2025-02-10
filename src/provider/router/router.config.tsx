@@ -5,34 +5,36 @@ import Dashboard from "../../app/page/dashboard/dashboard";
 import Layout from "../../app/page/layout/layout";
 import MovieDetails from "../../app/page/details/details";
 import NewMovie from "../../app/page/new-movie/new-movie";
+import { CONSTANT } from "../../CONSTANTS/constants";
+
 
 export const router = createBrowserRouter([
     {
-        path: "/auth",
+        path: "/",
         Component: AuthLayout,
         children: [
             {
-                path: "sign-in",
+                path: CONSTANT.ROUTES.PUBLIC.AUTH,
                 element: <SignIn />
             },
         ],
     },
     {
-        path: "/",
-        element: <Layout />,
+        path: CONSTANT.ROUTES.BASE,
+        element: <Layout />, 
         children: [
             {
-                path: '',
+                path: CONSTANT.ROUTES.PRIVATE.HOME,
                 element: <Dashboard />
             },
             {
-                path: '/new-movie',
+                path: CONSTANT.ROUTES.PRIVATE.NEW_MOVIE,
                 element: <NewMovie />
             }
         ]
     },
     {
-        path: '/details/:id',
+        path: CONSTANT.ROUTES.PRIVATE.MOVIE_DETAILS,
         element: <MovieDetails />
     }
 ]);

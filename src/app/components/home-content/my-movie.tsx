@@ -1,7 +1,18 @@
-import { Plus, Search } from 'lucide-react';
+import { Clapperboard, Plus, Search, Star } from 'lucide-react';
 import { Link } from 'react-router';
+import { CONSTANT } from '../../../CONSTANTS/constants';
+import { NoResult } from '../no-review';
 
 export function MyMovie() {
+
+    function ReviewButton() {
+        return (
+          <button className='flex items-center gap-2 hover:underline underline-offset-4 cursor-pointer'>
+            <Star className='size-5' />Avaliar filme
+          </button>
+        )
+      }
+
     return (
         <div className='flex flex-col space-y-8'>
             <header className="flex items-center justify-between">
@@ -12,12 +23,16 @@ export function MyMovie() {
                         <input type="search" placeholder="Pesquisar filme" className="bg-transparent outline-none" />
                     </div>
                     <div className='h-full w-1 bg-[#1A1B2D]' />
-                    <Link to="/new-movie" className='flex items-center gap-2 bg-[#892CCD] text-white w-full py-3 px-5 rounded-lg'>
+                    <Link to={CONSTANT.ROUTES.PRIVATE.NEW_MOVIE} className='flex items-center gap-2 bg-[#892CCD] text-white w-full py-3 px-5 rounded-lg'>
                         <Plus />
                         Novo
                     </Link>
                 </div>
             </header>
+            <NoResult 
+            icon={Clapperboard} 
+            content={{title: "Nenhum filme registrado", question: "Que tal começar cadastrando seu primeiro filme?"}} 
+            component={ReviewButton} />
         </div>
     )
 }

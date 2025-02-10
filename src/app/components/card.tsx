@@ -5,16 +5,16 @@ import { useNavigate } from 'react-router'
 export default function Card() {
 
   const router = useNavigate()
-  function goTo(id: number){
-      router(`/details/${id}`)
+  function goTo(id: number) {
+    router(`/details/${id}`)
   }
   return (
-    <button type='button' onClick={() => goTo(1)} className="relative w-[280px] overflow-hidden rounded-lg bg-black">
+    <button type='button' onClick={() => goTo(1)} className="hover:scale-110 ease-in-out transition-all duration-150 cursor-pointer relative w-full overflow-hidden rounded-lg ">
       {/* Image Container */}
-      <div className="relative h-[400px] w-full">
-        <img src={Cover || "/placeholder.svg"} alt="" className="object-cover bg-cover" />
+      <div className="relative aspect-[9/14] w-full">
+        <img src={Cover || "/placeholder.svg"} alt="" className="object-fill bg-cover w-full" />
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90" />
+        <div className="absolute -top-14 bg-gradient-to-b from-transparent via-transparent to-black/50" />
       </div>
 
       {/* Rating Badge */}
@@ -25,18 +25,21 @@ export default function Card() {
       </div>
 
       {/* Content */}
-      <div className="absolute bottom-0 w-full p-4">
-        <h2 className="mb-2 text-xl font-bold text-white">Pobres Criaturas</h2>
+      <div className="absolute flex inset-0 bottom-[98px] w-full p-4 bg-gradient-to-t from-black/90 to-transparent">
+        <div className='mt-auto'>
+          <h2 className=" text-xl font-bold text-white text-left">Pobres Criaturas</h2>
 
-        <div className="flex items-center gap-2">
-          <span className="rounded-md bg-[#2b2b2b]/80 px-2 py-0.5 text-sm text-white/90">Drama</span>
-          <span className="text-sm text-white/70">2024</span>
+          <div className="flex items-center gap-2 text-[#B5B6C9] nunito-sans-bold text-sm">
+            <span>Drama</span>
+            <span>2024</span>
+          </div>
+
+          {/* Hugs/Metrics */}
+          <div className="mt-2 text-sm text-white/60">
+            44 Hug • 22 Hug
+          </div>
         </div>
 
-        {/* Hugs/Metrics */}
-        <div className="mt-2 text-sm text-white/60">
-          44 Hug • 22 Hug
-        </div>
       </div>
     </button>
   )
