@@ -8,7 +8,7 @@ export function Header() {
     const { activeTabs, handleTabs, tabsValue } = useTabs();
 
     return (
-        <nav className="flex justify-between items-center border-b border-[#131320] py-5 px-6">
+        <nav className="flex justify-between max-h-[80px] h-full items-center border-b border-[#131320] py-5 px-6">
             <Link to={`/${CONSTANT.ROUTES.BASE}`}>
                 <img src="/Logo.svg" alt="logo" className="object-cover h-12 w-12" />
             </Link>
@@ -31,7 +31,7 @@ export function Header() {
 
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex h-full items-center gap-2">
                 <span className="text-[#B5B6C9] text-sm nunito-sans">Olá, Jordan</span>
                 <div className="h-8 w-8 shrink-0">
                     <img
@@ -40,7 +40,7 @@ export function Header() {
                         className="object-cover rounded-sm border-2 border-[#892CCD]"
                     />
                 </div>
-                <div className="h-full w-1 bg-gray-300" />
+                <div className="h-full w-px bg-[#1A1B2D] mx-3" />
 
                 <button type="button" className="bg-[#1A1B2D] p-1.5 rounded-lg ">
                     <LogOut className="size-5" />

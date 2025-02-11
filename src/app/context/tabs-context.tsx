@@ -36,17 +36,25 @@ export const tabsValue = [
 
 
 export function TabsProvider({ children }: TabsProviderProps) {
-    const [activeTabs, setActiveTabs] = useState<string | null >(tabsValue[0].id);
+    const [activeTabs, setActiveTabs] = useState<string | null>(tabsValue[0].id);
     const location = useLocation()
-    console.log(location.pathname)
+
     const navigate = useNavigate();
     function handleTabs(newTab: string) {
-        if(location.pathname !== '/app') return setActiveTabs(null)
-        
-        navigate(tabsValue.find(item => item.id === newTab)?.url || '');
+        const isOnAppRoute = location.pathname === '/app';
+        const tabData = tabsValue.find(item => item.id === newTab);
 
+        if (!isOnAppRoute) {
+            setActiveTabs(newTab); // Reseta se estiver fora da rota
+            navigate("/app"); // Redireciona para app com a tab selecionada
+            return;
+        }
+
+        // Se já estiver em /app, apenas atualiza a aba ativa e navega
         setActiveTabs(newTab);
+        if (tabData) navigate(tabData.url);
     }
+
     return (
         <tabsContext.Provider value={{ activeTabs, handleTabs, tabsValue }}>
             {children}
